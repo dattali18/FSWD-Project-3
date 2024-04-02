@@ -1,0 +1,1 @@
+// this will be the file for the class Fajax that will simulate the AJAX requests from the server (simulated in the server directory)
