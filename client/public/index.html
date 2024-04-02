@@ -1,17 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/main.css" />
 
     <!-- Scripts -->
-    <script src="assets/scripts/main.js" defer></script>
-    <title>App</title>
-</head>
-<body>
-    
-</body>
+    <script src="/client/src/index.js" defer></script>
+
+    <!-- Title -->
+    <title>My Contacts</title>
+  </head>
+  <body>
+    <header>
+      <h1>My Contacts</h1>
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-list-item" id="homeLink">Home</li>
+          <li class="navbar-list-item" id="signupLink">Sign Up</li>
+          <li class="navbar-list-item" id="loginLink">Login</li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Login Page -->
+    <div id="login" style="display: none">
+      <form id="login-form" class="login-form">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup" style="display: none">
+      <form id="signup-form" class="signup-form">
+        <h2>Sign Up</h2>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home">
+      <main>
+        <h2>Contacts</h2>
+        <ul id="contact-list">
+          <!-- Contact 1 -->
+          <li class="contact">
+            <img src="avatar1.jpg" alt="Avatar" class="avatar" />
+            <div class="contact-info">
+              <h3 class="contact-name">John Doe</h3>
+              <p class="contact-phone">123-456-7890</p>
+              <p class="contact-email">johndoe@example.com</p>
+              <!-- Add more contact details here -->
+            </div>
+          </li>
+          <!-- Contact 2 -->
+          <li class="contact">
+            <img src="avatar2.jpg" alt="Avatar" class="avatar" />
+            <div class="contact-info">
+              <h3 class="contact-name">Jane Smith</h3>
+              <p class="contact-phone">987-654-3210</p>
+              <p class="contact-email">janesmith@example.com</p>
+              <!-- Add more contact details here -->
+            </div>
+          </li>
+          <!-- Add more contacts here -->
+        </ul>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2022 My App. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
