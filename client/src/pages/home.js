@@ -1,33 +1,34 @@
 // this page will handle the logic of the home page in our application
 
-const contactList = document.getElementById("contact-list");
+export function renderHomePage() {
+  const contactList = document.getElementById("contact-list");
+  contactList.innerHTML = "";
+  // dummy data for the contact list
+  const contacts = [
+    {
+      name: "John Doe",
+      email: "johndoe@gmail.com",
+      phone: "+999-999-9999",
+    },
+    {
+      name: "Mary Jane",
+      email: "maryjane@gmail.com",
+      phone: "+888-888-8888",
+    },
+    {
+      name: "Peter Parker",
+      email: "paterparker@gmail.com",
+      phone: "+777-777-7777",
+    },
+  ];
 
-// dummy data for the contact list
-const contacts = [
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    phone: "+999-999-9999",
-  },
-  {
-    name: "Mary Jane",
-    email: "maryjane@gmail.com",
-    phone: "+888-888-8888",
-  },
-  {
-    name: "Peter Parker",
-    email: "paterparker@gmail.com",
-    phone: "+777-777-7777",
-  },
-];
-
-// loop through the contacts array and create a list item for each contact  
-contacts.forEach(contact => {
+  // loop through the contacts array and create a list item for each contact
+  contacts.forEach((contact) => {
     const listItem = document.createElement("li");
     listItem.classList.add("contact");
 
     const avatar = document.createElement("img");
-    avatar.src = "default.jpg";
+    avatar.src = "../../client/public/assets/images/user-icon.png";
     avatar.alt = "Avatar";
     avatar.classList.add("avatar");
     listItem.appendChild(avatar);
@@ -54,4 +55,5 @@ contacts.forEach(contact => {
     // Add more contact details here
 
     contactList.appendChild(listItem);
-});
+  });
+}

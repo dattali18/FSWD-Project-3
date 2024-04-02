@@ -11,6 +11,8 @@
 
     <script type="module" src="/client/src/index.js"></script>
     <script type="module" src="/client/src/pages/login.js"></script>
+    <script type="module" src="/client/src/pages/signup.js"></script>
+    <script type="module" src="/client/src/pages/home.js"></script>
 
     <!-- Title -->
     <title>My Contacts</title>
@@ -28,7 +30,7 @@
     </header>
     <main>
       <!-- Login Page -->
-      <div id="login" style="display: none">
+      <div id="login">
         <form id="login-form" class="login-form">
           <h2>Login</h2>
           <div class="form-group">
@@ -87,31 +89,12 @@
       </div>
 
       <!-- Home Page -->
-      <div id="home">
+      <div id="home" style="display: none">
         <main>
           <!-- Added <main> tag here -->
           <h2>Contacts</h2>
           <ul id="contact-list">
-            <!-- Contact 1 -->
-            <li class="contact">
-              <img src="avatar1.jpg" alt="Avatar" class="avatar" />
-              <div class="contact-info">
-                <h3 class="contact-name">John Doe</h3>
-                <p class="contact-phone">123-456-7890</p>
-                <p class="contact-email">johndoe@example.com</p>
-                <!-- Add more contact details here -->
-              </div>
-            </li>
-            <!-- Contact 2 -->
-            <li class="contact">
-              <img src="avatar2.jpg" alt="Avatar" class="avatar" />
-              <div class="contact-info">
-                <h3 class="contact-name">Jane Smith</h3>
-                <p class="contact-phone">987-654-3210</p>
-                <p class="contact-email">janesmith@example.com</p>
-                <!-- Add more contact details here -->
-              </div>
-            </li>
+            <!-- li are added by the JS -->
             <!-- Add more contacts here -->
           </ul>
         </main>

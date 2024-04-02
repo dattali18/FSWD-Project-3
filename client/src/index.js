@@ -1,3 +1,4 @@
+import { renderHomePage } from "./pages/home.js";
 import { handleSubmitLogin } from "./pages/login.js";
 // this is the entry point of the application
 
@@ -23,6 +24,7 @@ function navigateTo(pageId) {
   } else if (pageId === "#signup") {
     // Call functions from signup.js
   } else if (pageId === "#home") {
+    renderHomePage();
     // Call functions from home.js
   }
 }
