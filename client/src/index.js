@@ -1,5 +1,5 @@
 import { renderHomePage } from "./pages/home.js";
-import { handleSubmitLogin } from "./pages/login.js";
+// import { handleSubmitLogin } from "./pages/login.js";
 // this is the entry point of the application
 
 const loginLink = document.getElementById("loginLink");
@@ -37,7 +37,7 @@ function navigateTo(pageId) {
 
   if (pageId === "#login") {
     // Call functions from login.js
-    handleSubmitLogin();
+    // handleSubmitLogin();
   } else if (pageId === "#signup") {
     // Call functions from signup.js
   } else if (pageId === "#home") {

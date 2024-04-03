@@ -44,7 +44,7 @@
 .contact-info {
   margin-top: 0.5rem;
 
-  min-width: 60%;
+  /* min-width: 60%; */
 }
 
 .contact-name {
@@ -56,7 +56,7 @@
 }
 
 .contact-details {
-  min-width: 50%;
+  /* min-width: 50%; */
 
   display: flex;
   align-items: center;

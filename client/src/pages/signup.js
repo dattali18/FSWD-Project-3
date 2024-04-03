@@ -10,9 +10,7 @@ signUpForm.addEventListener("submit", (event) => {
   const nameFiled = document.getElementById("sign-name");
   const emailFiled = document.getElementById("sign-email");
   const passwordFiled = document.getElementById("sign-password");
-  const confirmPasswordFiled = document.getElementById(
-    "sign-confirm-password"
-  );
+  const confirmPasswordFiled = document.getElementById("sign-confirm-password");
 
   const name = nameFiled.value;
   const email = emailFiled.value;
@@ -56,7 +54,7 @@ signUpForm.addEventListener("submit", (event) => {
   emailFiled.value = "";
   passwordFiled.value = "";
   confirmPasswordFiled.value = "";
-  
+
   // navigate to the login page by using .style.display = "none" and .style.display = "block"
   const loginPage = document.querySelector("#login");
   const signUpPage = document.querySelector("#signup");
@@ -67,5 +65,4 @@ signUpForm.addEventListener("submit", (event) => {
   const signupLink = document.getElementById("signupLink");
   loginLink.classList.add("active");
   signupLink.classList.remove("active");
-
 });
