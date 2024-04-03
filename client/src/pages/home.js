@@ -30,7 +30,7 @@ export function renderHomePage() {
     const avatar = document.createElement("img");
     avatar.src = "../../client/public/assets/images/user-icon.png";
     avatar.alt = "Avatar";
-    avatar.classList.add("avatar");
+    avatar.classList.add("contact-avatar");
     listItem.appendChild(avatar);
 
     const contactInfo = document.createElement("div");

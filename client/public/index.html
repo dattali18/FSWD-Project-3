@@ -34,7 +34,7 @@
     </header>
     <main>
       <!-- Login Page -->
-      <div id="login">
+      <div id="login" style="display: none">
         <form class="form" id="login-form">
           <h2 class="form-header">Login</h2>
           <div class="input-group">
@@ -128,16 +128,27 @@
       </div>
 
       <!-- Home Page -->
-      <div id="home" style="display: none">
-        <main>
-          <!-- Added <main> tag here -->
-          <h2>Contacts</h2>
-          <ul id="contact-list">
-            <!-- li are added by the JS -->
-            <!-- Add more contacts here -->
-          </ul>
-        </main>
-        <!-- Added </main> tag here -->
+      <div id="home" style="display: block">
+        <h2 class="contact-header">Contacts</h2>
+        <ul id="contact-list">
+          <!-- li are added by the JS -->
+          <li class="contact">
+            <div class="contact-img">
+              <img
+                src="../../client/public/assets/images/user-icon.png"
+                alt="Avatar"
+                class="contact-avatar"
+              />
+            </div>
+            <div class="contact-info">
+              <h3 class="contact-name">John Doe</h3>
+              <div class="contact-details">
+                <p class="contact-phone">+999-999-9999</p>
+                <p class="contact-email">johndoe@gmail.com</p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </main>
     <footer>
