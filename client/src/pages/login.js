@@ -39,6 +39,11 @@ loginForm.addEventListener("submit", (event) => {
   // change the active link to home
   const homeLink = document.getElementById("homeLink");
   const loginLink = document.getElementById("loginLink");
+  const logoutLink = document.getElementById("logoutLink");
   homeLink.classList.add("active");
   loginLink.classList.remove("active");
+  loginLink.style.display = "none";
+
+  // display the logout link
+  logoutLink.style.display = "block";
 });

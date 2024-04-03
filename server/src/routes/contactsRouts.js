@@ -13,8 +13,7 @@ function getAllContacts() {
     data:
       database.contacts
         .getContacts()
-        .find((c) => c.user === database.currentUser.getCurrentUser().name) ||
-      [],
+        .filter((c) => c.user === database.currentUser.getCurrentUser().name),
   };
 }
 
@@ -23,15 +22,15 @@ function getContactByName(name) {
     return { status: "error", message: "Unauthorized", data: null };
   }
 
-  const contacts =
+  const contact =
     database.contacts
-      .getAllContacts()
-      .find((c) => c.user === database.currentUser.getCurrentUser().name) || [];
+      .getContacts()
+      .find((c) => c.user === database.currentUser.getCurrentUser().name && c.name === name);
 
   return {
     status: "success",
     message: "Successfully retrieved contact by name",
-    data: contacts.find((c) => c.name === name),
+    data: contact,
   };
 }
 
@@ -39,7 +38,7 @@ function addContact(contact) {
   if (!database.currentUser.getCurrentUser()) {
     return { status: "error", message: "Unauthorized", data: null };
   }
-  contact.id = database.contacts.getAllContacts().length + 1;
+  contact.id = database.contacts.getContacts().length + 1;
   // Generate a unique ID for the new contact
   const res = database.contacts.postContact(
     contact,

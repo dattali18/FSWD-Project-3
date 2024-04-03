@@ -52,7 +52,7 @@ function getCurrentUser() {
 }
 
 function logoutUser() {
-  database.currentUser.getCurrentUser(null);
+  database.currentUser.logoutUser(null);
   return { status: "success", message: "Successfully logged out" };
 }
 

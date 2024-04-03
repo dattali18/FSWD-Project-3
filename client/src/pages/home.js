@@ -11,7 +11,7 @@ export function renderHomePage() {
   request.open("GET", "/contacts/");
   request.onload = () => {
     if (request.status === 200) {
-      console.log("Success:", request.data);
+      console.log("Success:", request.response);
     } else {
       console.error("Error:", request.response);
     }

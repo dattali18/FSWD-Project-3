@@ -1,10 +1,20 @@
 import { renderHomePage } from "./pages/home.js";
-// import { handleSubmitLogin } from "./pages/login.js";
 // this is the entry point of the application
 
 const loginLink = document.getElementById("loginLink");
 const signupLink = document.getElementById("signupLink");
 const homeLink = document.getElementById("homeLink");
+const logoutLink = document.getElementById("logoutLink");
+
+function displayLogoutLink() {
+  loginLink.style.display = "none";
+  logoutLink.style.display = "block";
+}
+
+function displayLoginLink() {
+  loginLink.style.display = "block";
+  logoutLink.style.display = "none";
+}
 
 const links = { "#login": loginLink, "#signup": signupLink, "#home": homeLink };
 
@@ -43,6 +53,9 @@ function navigateTo(pageId) {
   } else if (pageId === "#home") {
     renderHomePage();
     // Call functions from home.js
+  } else if (pageId === "#logout") {
+    // Call functions from logout.js
+    renderLogoutPage();
   }
 }
 
@@ -55,14 +68,12 @@ signupLink.addEventListener("click", () => {
 });
 
 homeLink.addEventListener("click", () => {
-  let user;
   let userAuth = false;
 
   const request = new window.Fajax();
   request.open("GET", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
-      user = request.response;
       userAuth = true;
       console.log("Success:", request.status, request.message);
     } else {
@@ -78,6 +89,38 @@ homeLink.addEventListener("click", () => {
   }
 });
 
+logoutLink.addEventListener("click", () => {
+  // client-side code
+  const request = new window.Fajax();
+  request.open("DELETE", "/auth/");
+  request.onload = () => {
+    if (request.status === 200) {
+      console.log("Success:", request.data);
+    } else {
+      console.error("Error:", request.response);
+    }
+  };
+  request.send();
+
+  // display the login page
+  const home = document.getElementById("home");
+  const login = document.getElementById("login");
+  const signup = document.getElementById("signup");
+  home.style.display = "none";
+  signup.style.display = "none";
+  login.style.display = "block";
+
+  // display the login link
+  const homeLink = document.getElementById("homeLink");
+  const loginLink = document.getElementById("loginLink");
+  const logoutLink = document.getElementById("logoutLink");
+  homeLink.classList.remove("active");
+  loginLink.classList.add("active");
+  
+  // hide the logout link
+  displayLoginLink();
+});
+
 document.getElementById("signup-link").addEventListener("click", () => {
   navigateTo("#signup");
 });
@@ -85,3 +128,23 @@ document.getElementById("signup-link").addEventListener("click", () => {
 document.getElementById("login-link").addEventListener("click", () => {
   navigateTo("#login");
 });
+
+// check if the user is authenticated
+// if the user is authenticated, redirect to the home page
+let userAuth = false;
+const request = new window.Fajax();
+request.open("GET", "/auth/");
+request.onload = () => {
+  if (request.status === 200) {
+    userAuth = true;
+    console.log("Success:", request.status, request.message);
+  } else {
+    console.error("Error:", request.status, request.message);
+  }
+};
+request.send();
+
+if (userAuth) {
+  displayLogoutLink();
+  navigateTo("#home");
+}

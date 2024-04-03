@@ -49,10 +49,8 @@ class Fajax {
             // action is not null
             if (this.method === "GET") {
               response = server.getContactByName(action);
-            } else if (this.method === "POST") {
-              response = server.addContact(action);
             } else if (this.method === "PUT") {
-              response = server.updateContact(action);
+              response = server.updateContact(action, this.data);
             } else if (this.method === "DELETE") {
               response = server.deleteContact(action);
             }
