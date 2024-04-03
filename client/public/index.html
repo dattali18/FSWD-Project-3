@@ -7,13 +7,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/styles/main.css" />
 
-    <!-- Scripts -->
-
-    <script type="module" src="/client/src/index.js"></script>
-    <script type="module" src="/client/src/pages/login.js"></script>
-    <script type="module" src="/client/src/pages/signup.js"></script>
-    <script type="module" src="/client/src/pages/home.js"></script>
-
     <!-- Title -->
     <title>My Contacts</title>
   </head>
@@ -161,5 +154,25 @@
         <p>&copy;2024 Daniel Attali. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/server/src/databases/contacts.js"></script>
+    <script type="module" src="/server/src/databases/currentUser.js"></script>
+    <script type="module" src="/server/src/databases/users.js"></script>
+
+    <script type="module" src="/server/src/databases/database.js"></script>
+
+    <script type="module" src="/server/src/routes/contactsRouts.js"></script>
+    <script type="module" src="/server/src/routes/usersRouts.js"></script>
+
+    <script type="module" src="/server/server.js"></script>
+
+    <script type="module" src="/client/src/utils/fajax.js"></script>
+
+    <script type="module" src="/client/src/pages/login.js"></script>
+    <script type="module" src="/client/src/pages/signup.js"></script>
+    <script type="module" src="/client/src/pages/home.js"></script>
+
+    <script type="module" src="/client/src/index.js"></script>
   </body>
 </html>

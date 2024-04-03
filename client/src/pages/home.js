@@ -1,26 +1,22 @@
 // this page will handle the logic of the home page in our application
+// import { Fajax } from "../utils/fajax.js";
 
 export function renderHomePage() {
   const contactList = document.getElementById("contact-list");
   contactList.innerHTML = "";
-  // dummy data for the contact list
-  const contacts = [
-    {
-      name: "John Doe",
-      email: "johndoe@gmail.com",
-      phone: "+999-999-9999",
-    },
-    {
-      name: "Mary Jane",
-      email: "maryjane@gmail.com",
-      phone: "+888-888-8888",
-    },
-    {
-      name: "Peter Parker",
-      email: "paterparker@gmail.com",
-      phone: "+777-777-7777",
-    },
-  ];
+
+  // client-side code
+  const contacts = [];
+  const request = new window.Fajax();
+  request.open("GET", "/contacts");
+  request.onload = () => {
+    if (request.status === 200) {
+      contacts = JSON.parse(request.response);
+    } else {
+      console.error("Error:", request.response);
+    }
+  };
+  request.send();
 
   // loop through the contacts array and create a list item for each contact
   contacts.forEach((contact) => {
@@ -57,3 +53,22 @@ export function renderHomePage() {
     contactList.appendChild(listItem);
   });
 }
+
+// dummy data for the contact list
+// const contacts = [
+//   {
+//     name: "John Doe",
+//     email: "johndoe@gmail.com",
+//     phone: "+999-999-9999",
+//   },
+//   {
+//     name: "Mary Jane",
+//     email: "maryjane@gmail.com",
+//     phone: "+888-888-8888",
+//   },
+//   {
+//     name: "Peter Parker",
+//     email: "paterparker@gmail.com",
+//     phone: "+777-777-7777",
+//   },
+// ];
