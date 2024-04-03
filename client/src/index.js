@@ -2,6 +2,12 @@ import { renderHomePage } from "./pages/home.js";
 import { handleSubmitLogin } from "./pages/login.js";
 // this is the entry point of the application
 
+const loginLink = document.getElementById("loginLink");
+const signupLink = document.getElementById("signupLink");
+const homeLink = document.getElementById("homeLink");
+
+const links = { "#login": loginLink, "#signup": signupLink, "#home": homeLink };
+
 function renderPage(pageId) {
   const pages = ["#login", "#signup", "#home"];
   pages.forEach((page) => {
@@ -15,8 +21,19 @@ function renderPage(pageId) {
   });
 }
 
+function activateLink(linkId) {
+  for (let link in links) {
+    if (link === linkId) {
+      links[link].classList.add("active");
+    } else {
+      links[link].classList.remove("active");
+    }
+  }
+}
+
 function navigateTo(pageId) {
   renderPage(pageId);
+  activateLink(pageId);
 
   if (pageId === "#login") {
     // Call functions from login.js
@@ -29,14 +46,14 @@ function navigateTo(pageId) {
   }
 }
 
-document.getElementById("loginLink").addEventListener("click", () => {
+loginLink.addEventListener("click", () => {
   navigateTo("#login");
 });
 
-document.getElementById("signupLink").addEventListener("click", () => {
+signupLink.addEventListener("click", () => {
   navigateTo("#signup");
 });
 
-document.getElementById("homeLink").addEventListener("click", () => {
+homeLink.addEventListener("click", () => {
   navigateTo("#home");
 });

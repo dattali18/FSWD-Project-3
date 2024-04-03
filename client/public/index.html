@@ -19,72 +19,111 @@
   </head>
   <body>
     <header>
-      <h1>My Contacts</h1>
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-list-item" id="homeLink">Home</li>
-          <li class="navbar-list-item" id="signupLink">Sign Up</li>
-          <li class="navbar-list-item" id="loginLink">Login</li>
-        </ul>
+      <nav class="nav">
+        <div class="nav-site-icon">
+          <h1>Contacts</h1>
+        </div>
+        <div class="nav-links">
+          <ul class="nav-links-list">
+            <li id="homeLink" class="nav-links-list-item active">Home</li>
+            <li id="signupLink" class="nav-links-list-item">Sign Up</li>
+            <li id="loginLink" class="nav-links-list-item">Login</li>
+          </ul>
+        </div>
       </nav>
     </header>
     <main>
       <!-- Login Page -->
       <div id="login">
-        <form id="login-form" class="login-form">
-          <h2>Login</h2>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" class="form-control" required />
+        <form class="form" id="login-form">
+          <h2 class="form-header">Login</h2>
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
           </div>
-          <div class="form-group">
+          <div class="input-group">
             <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
           </div>
-          <div class="form-group">
+          <div class="input-group">
             <label for="password">Password</label>
             <input
               type="password"
               id="password"
-              class="form-control"
+              name="password"
+              placeholder="Enter your password"
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button class="submit-btn" type="submit">Login</button>
+          <p>
+            Don't have an account?
+            <a class="sign-in-link" href="#">Sign Up</a>
+          </p>
         </form>
       </div>
 
       <!-- Sign Up Page -->
       <div id="signup" style="display: none">
-        <form id="signup-form" class="signup-form">
-          <h2>Sign Up</h2>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" class="form-control" required />
+        <form class="form" id="signup-form">
+          <h2 class="form-header">Sign Up</h2>
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
           </div>
-          <div class="form-group">
+          <div class="input-group">
             <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
           </div>
-          <div class="form-group">
+          <div class="input-group">
             <label for="password">Password</label>
             <input
               type="password"
               id="password"
-              class="form-control"
+              name="password"
+              placeholder="Enter your password"
               required
             />
           </div>
-          <div class="form-group">
+          <div class="input-group">
             <label for="confirm-password">Confirm Password</label>
             <input
               type="password"
               id="confirm-password"
-              class="form-control"
+              name="confirm-password"
+              placeholder="Enter your password again"
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary">Sign Up</button>
+          <button class="submit-btn" type="submit">Sign Up</button>
+          <p>
+            Already have an account?
+            <a class="sign-in-link" href="#">Sign In</a>
+          </p>
         </form>
       </div>
 
@@ -102,7 +141,14 @@
       </div>
     </main>
     <footer>
-      <p>&copy; 2022 My App. All rights reserved.</p>
+      <div class="footer-info">
+        <h2 class="footer-info-header">Contact</h2>
+        <p>Website created by Daniel Attali</p>
+        <p class="footer-info-email">danielattali16@gmail.com</p>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy;2024 Daniel Attali. All rights reserved.</p>
+      </div>
     </footer>
   </body>
 </html>
