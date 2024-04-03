@@ -39,6 +39,18 @@ function authenticateUser(data) {
   return { status: "success", message: "Successfully auth user", data: user };
 }
 
+function getCurrentUser() {
+  let user = database.currentUser.getCurrentUser();
+  if (!user) {
+    return { status: "error", message: "No user is currently logged in" };
+  }
+  return {
+    status: "success",
+    message: "Successfully fetched current user",
+    data: user,
+  };
+}
+
 function logoutUser() {
   database.currentUser.getCurrentUser(null);
   return { status: "success", message: "Successfully logged out" };
@@ -47,5 +59,6 @@ function logoutUser() {
 window.registerUser = registerUser;
 window.authenticateUser = authenticateUser;
 window.logoutUser = logoutUser;
+window.getCurrentUser = getCurrentUser;
 
 // export default { registerUser, authenticateUser, logoutUser };

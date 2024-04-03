@@ -5,7 +5,7 @@ const {
   getContactByName,
   updateContact,
 } = window;
-const { authenticateUser, logoutUser, registerUser } = window;
+const { getCurrentUser, authenticateUser, logoutUser, registerUser } = window;
 
 // this will simulate an http server in js
 const server = {
@@ -20,6 +20,7 @@ const server = {
   authenticateUser,
   logoutUser,
   registerUser,
+  getCurrentUser,
 };
 
 console.log("Server initialized");

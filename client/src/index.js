@@ -55,7 +55,27 @@ signupLink.addEventListener("click", () => {
 });
 
 homeLink.addEventListener("click", () => {
-  navigateTo("#home");
+  let user;
+  let userAuth = false;
+
+  const request = new window.Fajax();
+  request.open("GET", "/auth/");
+  request.onload = () => {
+    if (request.status === 200) {
+      user = request.response;
+      userAuth = true;
+      console.log("Success:", request.status, request.message);
+    } else {
+      console.error("Error:", request.status, request.message);
+    }
+  };
+  request.send();
+
+  if (userAuth) {
+    navigateTo("#home");
+  } else {
+    navigateTo("#login");
+  }
 });
 
 document.getElementById("signup-link").addEventListener("click", () => {

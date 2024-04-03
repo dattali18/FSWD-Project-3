@@ -2,7 +2,6 @@
 
 const database = window.database;
 
-
 function getAllContacts() {
   if (!database.currentUser.getCurrentUser()) {
     return { status: "error", message: "Unauthorized", data: null };
@@ -11,9 +10,11 @@ function getAllContacts() {
   return {
     status: "success",
     message: "Successfully retrieved contacts",
-    data: database.contacts
-      .getAllContacts()
-      .find((c) => c.user === database.currentUser.getCurrentUser().name),
+    data:
+      database.contacts
+        .getContacts()
+        .find((c) => c.user === database.currentUser.getCurrentUser().name) ||
+      [],
   };
 }
 
@@ -21,10 +22,16 @@ function getContactByName(name) {
   if (!database.currentUser.getCurrentUser()) {
     return { status: "error", message: "Unauthorized", data: null };
   }
+
+  const contacts =
+    database.contacts
+      .getAllContacts()
+      .find((c) => c.user === database.currentUser.getCurrentUser().name) || [];
+
   return {
     status: "success",
     message: "Successfully retrieved contact by name",
-    data: this.getAllContacts().find((c) => c.name === name),
+    data: contacts.find((c) => c.name === name),
   };
 }
 
@@ -95,7 +102,6 @@ window.getContactByName = getContactByName;
 window.addContact = addContact;
 window.updateContact = updateContact;
 window.deleteContact = deleteContact;
-
 
 // export default {
 //   getAllContacts,
