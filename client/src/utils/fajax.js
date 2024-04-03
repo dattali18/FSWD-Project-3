@@ -98,11 +98,7 @@ class Fajax {
           response = server.getCurrentUser();
         }
         if (this.method == "POST") {
-          response = server.authenticateUser(
-            data.name,
-            data.email,
-            data.password
-          );
+          response = server.authenticateUser(this.data);
         }
         if (this.method == "DELETE") {
           response = server.logoutUser();

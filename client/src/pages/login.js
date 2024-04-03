@@ -18,9 +18,18 @@ export function handleSubmitLogin() {
     };
 
     // convert the form data object to JSON
-    const jsonData = JSON.stringify(formData);
-    // store jsonData in the local storage
-    localStorage.setItem("formData", jsonData);
-    // TODO: send the form data to the backend
+    const data = JSON.stringify(formData);
+    console.log(data);
+    // Send the form data to the server for authentication
+    const request = new window.Fajax();
+    request.open("POST", "/auth/");
+    request.onload = () => {
+      if (request.status === 200) {
+        console.log("Success:", request.status, request.message);
+      } else {
+        console.error("Error:", request.status, request.message);
+      }
+    };
+    request.send(data);
   });
 }

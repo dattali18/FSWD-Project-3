@@ -1,5 +1,4 @@
 // this is the page we handle the submit for the sign up form
-
 // Get a reference to the sign-in form element
 const signUpForm = document.getElementById("signup-form");
 
@@ -8,12 +7,17 @@ signUpForm.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent the form from submitting
 
   // Get the values entered in the form fields
-  const name = document.getElementById("sign-name").value;
-  const email = document.getElementById("sign-email").value;
-  const password = document.getElementById("sign-password").value;
-  const confirmPassword = document.getElementById(
+  const nameFiled = document.getElementById("sign-name");
+  const emailFiled = document.getElementById("sign-email");
+  const passwordFiled = document.getElementById("sign-password");
+  const confirmPasswordFiled = document.getElementById(
     "sign-confirm-password"
-  ).value;
+  );
+
+  const name = nameFiled.value;
+  const email = emailFiled.value;
+  const password = passwordFiled.value;
+  const confirmPassword = confirmPasswordFiled.value;
 
   // Perform any necessary validation on the form data
   if (!email || !password) {
@@ -35,7 +39,7 @@ signUpForm.addEventListener("submit", (event) => {
 
   // Convert the form data object to JSON
   const data = JSON.stringify(formData);
-
+  // Send the form data to the server for authentication
   const request = new window.Fajax();
   request.open("POST", "/users/");
   request.onload = () => {
@@ -47,6 +51,21 @@ signUpForm.addEventListener("submit", (event) => {
   };
   request.send(data);
 
-  // Send the form data to the server for authentication
-  // TODO: implement this after setting up the server
+  // Clear the form fields
+  nameFiled.value = "";
+  emailFiled.value = "";
+  passwordFiled.value = "";
+  confirmPasswordFiled.value = "";
+  
+  // navigate to the login page by using .style.display = "none" and .style.display = "block"
+  const loginPage = document.querySelector("#login");
+  const signUpPage = document.querySelector("#signup");
+  signUpPage.style.display = "none";
+  loginPage.style.display = "block";
+  // activate login link
+  const loginLink = document.getElementById("loginLink");
+  const signupLink = document.getElementById("signupLink");
+  loginLink.classList.add("active");
+  signupLink.classList.remove("active");
+
 });

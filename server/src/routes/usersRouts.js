@@ -20,14 +20,9 @@ function registerUser(data) {
   return { status: "success", message: "User registered successfully" };
 }
 
-function authenticateUser(name, email, password) {
-  // Find user in the database
-  let data = {
-    name: name,
-    email: email,
-    password: password,
-  };
-
+function authenticateUser(data) {
+  // Check if user exists
+  data = JSON.parse(data);
   const user = database.users.getUser(data.name);
 
   if (!user) {
@@ -39,13 +34,13 @@ function authenticateUser(name, email, password) {
   }
 
   // Set current user
-  database.currentUser.setUser(user);
+  database.currentUser.postCurrentUser(user);
 
   return { status: "success", message: "Successfully auth user", data: user };
 }
 
 function logoutUser() {
-  database.currentUser.setUser(null);
+  database.currentUser.getCurrentUser(null);
   return { status: "success", message: "Successfully logged out" };
 }
 
