@@ -57,3 +57,11 @@ signupLink.addEventListener("click", () => {
 homeLink.addEventListener("click", () => {
   navigateTo("#home");
 });
+
+document.getElementById("signup-link").addEventListener("click", () => {
+  navigateTo("#signup");
+});
+
+document.getElementById("login-link").addEventListener("click", () => {
+  navigateTo("#login");
+});

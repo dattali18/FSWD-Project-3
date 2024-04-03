@@ -5,9 +5,8 @@ export function handleSubmitLogin() {
   const loginForm = document.getElementById("login-form");
   loginForm.addEventListener("submit", (event) => {
     event.preventDefault(); // prevent default form submission behavior
-
     // get the values from the form
-    const name = document.getElementById("username").value;
+    const name = document.getElementById("name").value;
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
 
@@ -21,7 +20,7 @@ export function handleSubmitLogin() {
     // convert the form data object to JSON
     const jsonData = JSON.stringify(formData);
     // store jsonData in the local storage
-    
+    localStorage.setItem("formData", jsonData);
     // TODO: send the form data to the backend
   });
 }
