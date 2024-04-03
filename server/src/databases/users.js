@@ -9,7 +9,12 @@ function getUser(name) {
   return getUsers().find((u) => u.name === name);
 }
 
-function postUser(data) {
+function postUser(name, email, password) {
+  let data = {
+    name: name,
+    email: email,
+    password: password,
+  };
   let users = getUsers();
   users.push(data);
   localStorage.setItem(DB_NAME, JSON.stringify(users));
@@ -36,5 +41,6 @@ const users = {
   putUser,
   deleteUser,
 };
+
 
 export { users };

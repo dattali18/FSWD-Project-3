@@ -1,8 +1,11 @@
-import { database } from "../databases/database.js";
+// import { database } from "../databases/database.js";
+
+const database = window.database;
+
 
 function getAllContacts() {
-  if (!database.currentUser.getUser()) {
-    return { status: "error", message: "Unauthorized" };
+  if (!database.currentUser.getCurrentUser()) {
+    return { status: "error", message: "Unauthorized", data: null };
   }
 
   return {
@@ -10,13 +13,13 @@ function getAllContacts() {
     message: "Successfully retrieved contacts",
     data: database.contacts
       .getAllContacts()
-      .find((c) => c.user === database.currentUser.getUser().name),
+      .find((c) => c.user === database.currentUser.getCurrentUser().name),
   };
 }
 
 function getContactByName(name) {
-  if (!database.currentUser.getUser()) {
-    return { status: "error", message: "Unauthorized" };
+  if (!database.currentUser.getCurrentUser()) {
+    return { status: "error", message: "Unauthorized", data: null };
   }
   return {
     status: "success",
@@ -26,19 +29,20 @@ function getContactByName(name) {
 }
 
 function addContact(contact) {
-  if (!database.currentUser.getUser()) {
-    return { status: "error", message: "Unauthorized" };
+  if (!database.currentUser.getCurrentUser()) {
+    return { status: "error", message: "Unauthorized", data: null };
   }
   contact.id = database.contacts.getAllContacts().length + 1;
   // Generate a unique ID for the new contact
   const res = database.contacts.postContact(
     contact,
-    database.currentUser.getUser().name
+    database.currentUser.getCurrentUser().name
   );
   if (!res) {
     return {
       status: "error",
       message: "Failed to add contact",
+      data: null,
     };
   }
 
@@ -53,12 +57,13 @@ function updateContact(id, updatedContact) {
   const res = database.contacts.putContact(
     id,
     updatedContact,
-    database.currentUser.getUser().name
+    database.currentUser.getCurrentUser().name
   );
   if (!res) {
     return {
       status: "error",
       message: "Failed to update contact",
+      data: null,
     };
   }
   return {
@@ -71,7 +76,7 @@ function updateContact(id, updatedContact) {
 function deleteContact(id) {
   const res = database.contacts.deleteContact(
     id,
-    database.currentUser.getUser().name
+    database.currentUser.getCurrentUser().name
   );
   if (!res) {
     return {
@@ -85,10 +90,17 @@ function deleteContact(id) {
   };
 }
 
-export default {
-  getAllContacts,
-  getContactByName,
-  addContact,
-  updateContact,
-  deleteContact,
-};
+window.getAllContacts = getAllContacts;
+window.getContactByName = getContactByName;
+window.addContact = addContact;
+window.updateContact = updateContact;
+window.deleteContact = deleteContact;
+
+
+// export default {
+//   getAllContacts,
+//   getContactByName,
+//   addContact,
+//   updateContact,
+//   deleteContact,
+// };

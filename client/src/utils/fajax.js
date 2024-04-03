@@ -22,7 +22,7 @@ class Fajax {
     const server = window.server;
     const { pathname } = new URL(this.url, "http://mycontacts.com");
     const [, resource, action] = pathname.split("/");
-    const response = null;
+    let response = null;
 
     switch (resource) {
       case "contacts":

@@ -1,8 +1,10 @@
-import { database } from "../databases/database.js";
+// import { database } from "../databases/database.js";
+
+const database = window.database;
 
 // this will simulate routes for the users Rest API
 
-function registerUser(user) {
+function registerUser(name, email, password) {
   // Check if user already exists
   const existingUser = database.users.getUser(user.name);
 
@@ -10,6 +12,11 @@ function registerUser(user) {
     return { status: "error", message: "User already exists" };
   }
 
+  let user = {
+    name: name,
+    email: email,
+    password: password,
+  };
   // Add new user to the database
   database.users.postUser(user);
   return { status: "success", message: "User registered successfully" };
@@ -44,4 +51,8 @@ function logoutUser() {
   return { status: "success", message: "Successfully logged out" };
 }
 
-export default { registerUser, authenticateUser, logoutUser };
+window.registerUser = registerUser;
+window.authenticateUser = authenticateUser;
+window.logoutUser = logoutUser;
+
+// export default { registerUser, authenticateUser, logoutUser };
