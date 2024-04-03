@@ -8,7 +8,7 @@ export function renderHomePage() {
   // client-side code
   const contacts = [];
   const request = new window.Fajax();
-  request.open("GET", "/contacts");
+  request.open("GET", "/contacts/");
   request.onload = () => {
     if (request.status === 200) {
       contacts = JSON.parse(request.response);

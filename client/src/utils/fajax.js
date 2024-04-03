@@ -27,7 +27,7 @@ class Fajax {
     switch (resource) {
       case "contacts":
         switch (action) {
-          case undefined:
+          case "":
             if (this.method === "GET") {
               response = server.getAllContacts();
             } else if (this.method === "POST") {
@@ -81,10 +81,10 @@ class Fajax {
             if (response.status === "error") {
               this.status = 401;
               this.message = response.message;
-              this.response = null;
+              // this.response = null;
             } else {
               this.status = 200;
-              this.response = response.data;
+              // this.response = response.data;
               this.message = response.message;
             }
             break;

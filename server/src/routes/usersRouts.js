@@ -4,19 +4,17 @@ const database = window.database;
 
 // this will simulate routes for the users Rest API
 
-function registerUser(name, email, password) {
+function registerUser(data) {
   // Check if user already exists
+  console.log(data);
+  let user = JSON.parse(data);
+
   const existingUser = database.users.getUser(user.name);
 
   if (existingUser) {
     return { status: "error", message: "User already exists" };
   }
 
-  let user = {
-    name: name,
-    email: email,
-    password: password,
-  };
   // Add new user to the database
   database.users.postUser(user);
   return { status: "success", message: "User registered successfully" };
