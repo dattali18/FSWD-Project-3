@@ -19,7 +19,7 @@ function displayLoginLink() {
 const links = { "#login": loginLink, "#signup": signupLink, "#home": homeLink };
 
 function renderPage(pageId) {
-  const pages = ["#login", "#signup", "#home"];
+  const pages = ["#login", "#signup", "#home", "#contact-form-page"];
   pages.forEach((page) => {
     const pageElement = document.querySelector(page);
 

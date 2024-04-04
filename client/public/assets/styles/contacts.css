@@ -9,6 +9,24 @@
   /* border-bottom: 2px solid var(--grey); */
 }
 
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plus-icon {
+  font-size: 2rem;
+  border: 1px solid var(--grey);
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+
+.plus-icon:hover {
+  background-color: var(--grey);
+  cursor: pointer;
+}
+
 .contact {
   list-style: none;
 

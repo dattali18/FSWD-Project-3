@@ -13,7 +13,8 @@ function getAllContacts() {
     data:
       database.contacts
         .getContacts()
-        .filter((c) => c.user === database.currentUser.getCurrentUser().name),
+        .filter((c) => c.user === database.currentUser.getCurrentUser().name)
+        .map(c => c.contact),
   };
 }
 
@@ -38,6 +39,7 @@ function addContact(contact) {
   if (!database.currentUser.getCurrentUser()) {
     return { status: "error", message: "Unauthorized", data: null };
   }
+  contact = JSON.parse(contact);
   contact.id = database.contacts.getContacts().length + 1;
   // Generate a unique ID for the new contact
   const res = database.contacts.postContact(

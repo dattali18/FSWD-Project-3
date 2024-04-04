@@ -30,8 +30,10 @@ class Fajax {
           case "":
             if (this.method === "GET") {
               response = server.getAllContacts();
+              this.status = 200;
             } else if (this.method === "POST") {
               response = server.addContact(this.data);
+              this.status = 201;
             }
 
             // parse the response
@@ -40,7 +42,7 @@ class Fajax {
               this.message = response.message;
               this.response = null;
             } else {
-              this.status = 200;
+              // this.status = 200;
               this.response = response.data;
               this.message = response.message;
             }
