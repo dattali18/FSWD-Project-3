@@ -1,22 +1,21 @@
 // this file will be used to handle a contact form submit
 import Fajax from "../utils/fajax.js";
+
+import { renderPage } from "../utils/navigation.js";
 import { renderHomePage } from "./home.js";
 
-function navigateToHome() {
-  const homePage = document.getElementById("home");
-  const contactPage = document.getElementById("contact-form-page");
+let submitForm;
+let object = null;
 
-  homePage.style.display = "block";
-  contactPage.style.display = "none";
-
-  renderHomePage();
-}
+const form = document.getElementById("contact-form");
+form.addEventListener("submit", async (event) => submitForm(event));
 
 export function renderContactFormPage(contactInfo = null) {
   console.log("Rendering contact form page");
-  // put the contact info in the form
-  const form = document.getElementById("contact-form");
+  // removing all the old event listeners
+  // form.replaceWith(form.cloneNode(true));
 
+  // put the contact info in the form
   if (contactInfo) {
     const contact = contactInfo.contact;
     form.elements["contact-name"].value = contact.name;
@@ -24,43 +23,45 @@ export function renderContactFormPage(contactInfo = null) {
     form.elements["contact-email"].value = contact.email;
   }
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-    const contact = {
-      name: formData.get("contact-name"),
-      phone: formData.get("contact-phone"),
-      email: formData.get("contact-email"),
-    };
-
-    form.elements["contact-name"].value = "";
-    form.elements["contact-phone"].value = "";
-    form.elements["contact-email"].value = "";
-
-    let flag = false;
-    const request = new Fajax();
-    request.open("POST", "/contacts/");
-    if (contactInfo) {
-      const url = "/contacts/" + contactInfo.id;
-      console.log(url);
-      request.open("PUT", url);
-    }
-    request.onload = () => {
-      if (request.status === 201 || request.status === 200) {
-        flag = true;
-        console.log("Success:", request.response);
-      } else {
-        console.error("Error:", request.message);
-      }
-    };
-    request.send(JSON.stringify(contact));
-
-    // navigate back to the home page
-    if (flag) {
-      navigateToHome();
-    }
-  });
+  object = contactInfo;
 }
 
+submitForm = (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const contact = {
+    name: formData.get("contact-name"),
+    phone: formData.get("contact-phone"),
+    email: formData.get("contact-email"),
+  };
+
+  form.elements["contact-name"].value = "";
+  form.elements["contact-phone"].value = "";
+  form.elements["contact-email"].value = "";
+
+  let flag = false;
+  const request = new Fajax();
+  request.open("POST", "/contacts/");
+  if (object) {
+    const url = "/contacts/" + object.id;
+    console.log(url);
+    request.open("PUT", url);
+  }
+  request.onload = () => {
+    if (request.status === 201 || request.status === 200) {
+      flag = true;
+      console.log("Success:", request.response);
+    } else {
+      console.error("Error:", request.message);
+    }
+  };
+  request.send(JSON.stringify(contact));
+
+  // navigate back to the home page
+  if (flag) {
+    renderHomePage();
+    renderPage("#home");
+  }
+};
 console.log("contactForm.js loaded!");

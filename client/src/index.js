@@ -3,6 +3,7 @@ import Fajax from "./utils/fajax.js";
 import { renderContactFormPage } from "./pages/contactForm.js";
 import { renderHomePage } from "./pages/home.js";
 import { renderLoginPage } from "./pages/login.js";
+import { renderSignUpPage } from "./pages/signup.js";
 import { activateLink, renderPage } from "./utils/navigation.js";
 
 console.log("index.js loaded!");
@@ -39,12 +40,10 @@ function navigateTo(pageId) {
     renderLoginPage();
   } else if (pageId === "#signup") {
     // Call functions from signup.js
+    renderSignUpPage();
   } else if (pageId === "#home") {
     renderHomePage();
     // Call functions from home.js
-  } else if (pageId === "#logout") {
-    // Call functions from logout.js
-    // renderLogoutPage();
   } else if (pageId === "#contact-form-page") {
     // Call functions from contactForm.js
     renderContactFormPage();

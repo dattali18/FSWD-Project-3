@@ -66,7 +66,7 @@ function addContact(contact) {
 function updateContact(id, updatedContact) {
   const res = database.contacts.putContact(
     id,
-    updatedContact,
+    JSON.parse(updatedContact),
     database.currentUser.getCurrentUser().name
   );
   if (!res) {

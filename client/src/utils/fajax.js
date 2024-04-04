@@ -51,7 +51,7 @@ class Fajax {
             }
             break;
           default:
-            let id = Number(action) ? Number(action) : 0;
+            let id = Number(action) ? Number(action) : 1;
             // action is not null
             if (this.method === "GET") {
               response = server.getContactByName(id);

@@ -1,7 +1,8 @@
 // this page will handle the logic of the home page in our application
-import Fajax from "../utils/fajax.js";
-import { renderPage } from "../utils/navigation.js";
 import { renderContactFormPage } from "./contactForm.js";
+
+import { renderPage } from "../utils/navigation.js";
+import Fajax from "../utils/fajax.js";
 
 function getInitials(name) {
   const words = name.split(" ");
@@ -36,7 +37,7 @@ function handleTrashClick(id) {
     }
   };
   request.send();
-  
+
   // render the home page
   renderHomePage();
   renderPage("#home");
@@ -116,14 +117,11 @@ function createListItem(contactList, object) {
   deleteText.textContent = "Delete";
   contactTrash.appendChild(deleteText);
 
+  contactEdit.addEventListener("click", handleEditClick.bind(null, object));
   contactTrash.addEventListener(
     "click",
-    handleTrashClick.bind(null, contact.name)
+    handleTrashClick.bind(null, object.id)
   );
-
-  contactEdit.addEventListener("click", handleEditClick.bind(null, object));
-  contactTrash.addEventListener("click", handleTrashClick.bind(null, object.id));
-
 
   contactList.appendChild(listItem);
 }
