@@ -8,6 +8,8 @@ const database = {
   currentUser,
 };
 
-// console.log("Database initialized");
+// console.log("database.js loaded!");
 
-window.database = database;
+export default database;
+
+// window.database = database;

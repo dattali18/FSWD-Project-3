@@ -1,11 +1,26 @@
-const {
+import {
   addContact,
   deleteContact,
   getAllContacts,
   getContactByName,
   updateContact,
-} = window;
-const { getCurrentUser, authenticateUser, logoutUser, registerUser } = window;
+} from "./src/routes/contactsRouts.js";
+
+import {
+  authenticateUser,
+  getCurrentUser,
+  logoutUser,
+  registerUser,
+} from "./src/routes/usersRouts.js";
+
+// const {
+//   addContact,
+//   deleteContact,
+//   getAllContacts,
+//   getContactByName,
+//   updateContact,
+// } = window;
+// const { getCurrentUser, authenticateUser, logoutUser, registerUser } = window;
 
 // this will simulate an http server in js
 const server = {
@@ -23,6 +38,8 @@ const server = {
   getCurrentUser,
 };
 
-console.log("Server initialized");
+// console.log("server.js loaded!");
 
-window.server = server;
+// window.server = server;
+
+export default server;

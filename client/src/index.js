@@ -1,4 +1,17 @@
+import Fajax from "./utils/fajax.js";
+
+import { renderContactFormPage } from "./pages/contactForm.js";
 import { renderHomePage } from "./pages/home.js";
+import { renderLoginPage } from "./pages/login.js";
+
+console.log("index.js loaded!");
+
+const plusButton = document.getElementById("plus-button");
+
+plusButton.addEventListener("click", () => {
+  navigateTo("#contact-form-page");
+});
+
 // this is the entry point of the application
 
 const loginLink = document.getElementById("loginLink");
@@ -47,7 +60,7 @@ function navigateTo(pageId) {
 
   if (pageId === "#login") {
     // Call functions from login.js
-    // handleSubmitLogin();
+    renderLoginPage();
   } else if (pageId === "#signup") {
     // Call functions from signup.js
   } else if (pageId === "#home") {
@@ -55,7 +68,10 @@ function navigateTo(pageId) {
     // Call functions from home.js
   } else if (pageId === "#logout") {
     // Call functions from logout.js
-    renderLogoutPage();
+    // renderLogoutPage();
+  } else if (pageId === "#contact-form-page") {
+    // Call functions from contactForm.js
+    renderContactFormPage();
   }
 }
 
@@ -70,7 +86,8 @@ signupLink.addEventListener("click", () => {
 homeLink.addEventListener("click", () => {
   let userAuth = false;
 
-  const request = new window.Fajax();
+  // const request = new window.Fajax();
+  const request = new Fajax();
   request.open("GET", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
@@ -91,7 +108,8 @@ homeLink.addEventListener("click", () => {
 
 logoutLink.addEventListener("click", () => {
   // client-side code
-  const request = new window.Fajax();
+  // const request = new window.Fajax();
+  const request = new Fajax();
   request.open("DELETE", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
@@ -116,7 +134,7 @@ logoutLink.addEventListener("click", () => {
   const logoutLink = document.getElementById("logoutLink");
   homeLink.classList.remove("active");
   loginLink.classList.add("active");
-  
+
   // hide the logout link
   displayLoginLink();
 });
@@ -132,7 +150,7 @@ document.getElementById("login-link").addEventListener("click", () => {
 // check if the user is authenticated
 // if the user is authenticated, redirect to the home page
 let userAuth = false;
-const request = new window.Fajax();
+const request = new Fajax();
 request.open("GET", "/auth/");
 request.onload = () => {
   if (request.status === 200) {
@@ -147,4 +165,7 @@ request.send();
 if (userAuth) {
   displayLogoutLink();
   navigateTo("#home");
+} else {
+  displayLoginLink();
+  navigateTo("#login");
 }

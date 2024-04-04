@@ -1,6 +1,6 @@
-// import { database } from "../databases/database.js";
+import database from "../databases/database.js";
 
-const database = window.database;
+// const database = window.database;
 
 function getAllContacts() {
   if (!database.currentUser.getCurrentUser()) {
@@ -10,11 +10,10 @@ function getAllContacts() {
   return {
     status: "success",
     message: "Successfully retrieved contacts",
-    data:
-      database.contacts
-        .getContacts()
-        .filter((c) => c.user === database.currentUser.getCurrentUser().name)
-        .map(c => c.contact),
+    data: database.contacts
+      .getContacts()
+      .filter((c) => c.user === database.currentUser.getCurrentUser().name)
+      .map((c) => c.contact),
   };
 }
 
@@ -23,10 +22,12 @@ function getContactByName(name) {
     return { status: "error", message: "Unauthorized", data: null };
   }
 
-  const contact =
-    database.contacts
-      .getContacts()
-      .find((c) => c.user === database.currentUser.getCurrentUser().name && c.name === name);
+  const contact = database.contacts
+    .getContacts()
+    .find(
+      (c) =>
+        c.user === database.currentUser.getCurrentUser().name && c.name === name
+    );
 
   return {
     status: "success",
@@ -98,16 +99,18 @@ function deleteContact(id) {
   };
 }
 
-window.getAllContacts = getAllContacts;
-window.getContactByName = getContactByName;
-window.addContact = addContact;
-window.updateContact = updateContact;
-window.deleteContact = deleteContact;
+// window.getAllContacts = getAllContacts;
+// window.getContactByName = getContactByName;
+// window.addContact = addContact;
+// window.updateContact = updateContact;
+// window.deleteContact = deleteContact;
 
-// export default {
-//   getAllContacts,
-//   getContactByName,
-//   addContact,
-//   updateContact,
-//   deleteContact,
-// };
+// console.log("contactsRoutes.js loaded!");
+
+export {
+  addContact,
+  deleteContact,
+  getAllContacts,
+  getContactByName,
+  updateContact,
+};

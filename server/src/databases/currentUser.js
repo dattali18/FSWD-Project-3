@@ -1,5 +1,9 @@
 function getCurrentUser() {
-  return JSON.parse(localStorage.getItem("currentUser"));
+  const user = localStorage.getItem("currentUser");
+  // if (user === "") {
+  //   return null;
+  // }
+  return JSON.parse(user);
 }
 
 function postCurrentUser(data) {
@@ -7,6 +11,7 @@ function postCurrentUser(data) {
 }
 
 function logoutUser() {
+  // localStorage.setItem("currentUser", null);
   localStorage.removeItem("currentUser");
 }
 
@@ -15,6 +20,5 @@ const currentUser = {
   postCurrentUser,
   logoutUser,
 };
-
 
 export { currentUser };

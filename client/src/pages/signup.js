@@ -1,3 +1,4 @@
+import Fajax from "../utils/fajax";
 // this is the page we handle the submit for the sign up form
 // Get a reference to the sign-in form element
 const signUpForm = document.getElementById("signup-form");
@@ -38,7 +39,8 @@ signUpForm.addEventListener("submit", (event) => {
   // Convert the form data object to JSON
   const data = JSON.stringify(formData);
   // Send the form data to the server for authentication
-  const request = new window.Fajax();
+  // const request = new window.Fajax();
+  const request = new Fajax();
   request.open("POST", "/users/");
   request.onload = () => {
     if (request.status === 200) {
@@ -66,3 +68,5 @@ signUpForm.addEventListener("submit", (event) => {
   loginLink.classList.add("active");
   signupLink.classList.remove("active");
 });
+
+// console.log("signup.js loaded!");

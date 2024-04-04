@@ -1,12 +1,11 @@
-// import { database } from "../databases/database.js";
+import database from "../databases/database.js";
 
-const database = window.database;
+// const database = window.database;
 
 // this will simulate routes for the users Rest API
 
 function registerUser(data) {
   // Check if user already exists
-  console.log(data);
   let user = JSON.parse(data);
 
   const existingUser = database.users.getUser(user.name);
@@ -40,9 +39,14 @@ function authenticateUser(data) {
 }
 
 function getCurrentUser() {
-  let user = database.currentUser.getCurrentUser();
+  const user = database.currentUser.getCurrentUser();
+
   if (!user) {
-    return { status: "error", message: "No user is currently logged in" };
+    return {
+      status: "error",
+      message: "No user is currently logged in",
+      data: null,
+    };
   }
   return {
     status: "success",
@@ -56,9 +60,11 @@ function logoutUser() {
   return { status: "success", message: "Successfully logged out" };
 }
 
-window.registerUser = registerUser;
-window.authenticateUser = authenticateUser;
-window.logoutUser = logoutUser;
-window.getCurrentUser = getCurrentUser;
+// console.log("usersRoutes.js loaded!");
 
-// export default { registerUser, authenticateUser, logoutUser };
+// window.registerUser = registerUser;
+// window.authenticateUser = authenticateUser;
+// window.logoutUser = logoutUser;
+// window.getCurrentUser = getCurrentUser;
+
+export { authenticateUser, getCurrentUser, logoutUser, registerUser };

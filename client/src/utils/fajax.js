@@ -1,3 +1,5 @@
+import server from "../../../server/server.js";
+
 // this will be the file for the class Fajax that will simulate the AJAX requests from the server (simulated in the server directory)
 
 class Fajax {
@@ -19,7 +21,8 @@ class Fajax {
   send(data) {
     this.data = data;
     // Simulate server request
-    const server = window.server;
+    // const server = window.server;
+    // const server = server;
     const { pathname } = new URL(this.url, "http://mycontacts.com");
     const [, resource, action] = pathname.split("/");
     let response = null;
@@ -125,4 +128,8 @@ class Fajax {
   }
 }
 
-window.Fajax = Fajax;
+// window.Fajax = Fajax;
+
+console.log("fajax.js loaded!");
+
+export default Fajax;

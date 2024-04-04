@@ -1,8 +1,7 @@
 // this page will handle the logic of the home page in our application
-// import { Fajax } from "../utils/fajax.js";
+import Fajax from "../utils/fajax.js";
 
 function createListItem(contactList, contact) {
-
   const listItem = document.createElement("li");
   listItem.classList.add("contact");
 
@@ -48,7 +47,8 @@ export function renderHomePage() {
 
   // client-side code
   let contacts = [];
-  const request = new window.Fajax();
+  // const request = new window.Fajax();
+  const request = new Fajax();
   request.open("GET", "/contacts/");
   request.onload = () => {
     if (request.status === 200) {
@@ -66,31 +66,4 @@ export function renderHomePage() {
   });
 }
 
-const plusButton = document.getElementById("plus-button");
-
-plusButton.addEventListener("click", () => {
-  const homePage = document.getElementById("home");
-  const contactFormPage = document.getElementById("contact-form-page");
-
-  homePage.style.display = "none";
-  contactFormPage.style.display = "block";
-});
-
-// dummy data for the contact list
-// const contacts = [
-//   {
-//     name: "John Doe",
-//     email: "johndoe@gmail.com",
-//     phone: "+999-999-9999",
-//   },
-//   {
-//     name: "Mary Jane",
-//     email: "maryjane@gmail.com",
-//     phone: "+888-888-8888",
-//   },
-//   {
-//     name: "Peter Parker",
-//     email: "paterparker@gmail.com",
-//     phone: "+777-777-7777",
-//   },
-// ];
+console.log("home.js loaded!");
