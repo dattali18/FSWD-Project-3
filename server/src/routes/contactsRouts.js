@@ -13,7 +13,9 @@ function getAllContacts() {
     data: database.contacts
       .getContacts()
       .filter((c) => c.user === database.currentUser.getCurrentUser().name)
-      .map((c) => c.contact),
+      .map((c) => {
+        return { id: c.id, contact: c.contact };
+      }),
   };
 }
 
@@ -41,7 +43,6 @@ function addContact(contact) {
     return { status: "error", message: "Unauthorized", data: null };
   }
   contact = JSON.parse(contact);
-  contact.id = database.contacts.getContacts().length + 1;
   // Generate a unique ID for the new contact
   const res = database.contacts.postContact(
     contact,
@@ -83,10 +84,7 @@ function updateContact(id, updatedContact) {
 }
 
 function deleteContact(id) {
-  const res = database.contacts.deleteContact(
-    id,
-    database.currentUser.getCurrentUser().name
-  );
+  const res = database.contacts.deleteContact(id);
   if (!res) {
     return {
       status: "error",

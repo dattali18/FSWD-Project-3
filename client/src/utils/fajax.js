@@ -51,13 +51,15 @@ class Fajax {
             }
             break;
           default:
+            let id = Number(action) ? Number(action) : 0;
             // action is not null
             if (this.method === "GET") {
-              response = server.getContactByName(action);
+              response = server.getContactByName(id);
             } else if (this.method === "PUT") {
-              response = server.updateContact(action, this.data);
+              console.log(this.data);
+              response = server.updateContact(id, this.data);
             } else if (this.method === "DELETE") {
-              response = server.deleteContact(action);
+              response = server.deleteContact(id);
             }
 
             // parse the response

@@ -3,6 +3,7 @@ import Fajax from "./utils/fajax.js";
 import { renderContactFormPage } from "./pages/contactForm.js";
 import { renderHomePage } from "./pages/home.js";
 import { renderLoginPage } from "./pages/login.js";
+import { activateLink, renderPage } from "./utils/navigation.js";
 
 console.log("index.js loaded!");
 
@@ -27,31 +28,6 @@ function displayLogoutLink() {
 function displayLoginLink() {
   loginLink.style.display = "block";
   logoutLink.style.display = "none";
-}
-
-const links = { "#login": loginLink, "#signup": signupLink, "#home": homeLink };
-
-function renderPage(pageId) {
-  const pages = ["#login", "#signup", "#home", "#contact-form-page"];
-  pages.forEach((page) => {
-    const pageElement = document.querySelector(page);
-
-    if (page === pageId) {
-      pageElement.style.display = "block";
-    } else {
-      pageElement.style.display = "none";
-    }
-  });
-}
-
-function activateLink(linkId) {
-  for (let link in links) {
-    if (link === linkId) {
-      links[link].classList.add("active");
-    } else {
-      links[link].classList.remove("active");
-    }
-  }
 }
 
 function navigateTo(pageId) {

@@ -7,9 +7,11 @@ function getContacts() {
 
 function postContact(contact, userId) {
   let data = {
+    id: getContacts().length + 1,
     contact: contact,
     user: userId,
   };
+
   let contacts = getContacts();
   contacts.push(data);
   localStorage.setItem(DB_NAME, JSON.stringify(contacts));
@@ -20,9 +22,12 @@ function putContact(id, contact, userId) {
   let data = {
     contact: contact,
     user: userId,
+    id: id,
   };
+
   let contacts = getContacts();
-  let index = contacts.findIndex((c) => c.id === id && c.user === userId);
+  let index = contacts.findIndex((c) => c.id == id);
+  console.log(index);
   if (index == -1) {
     return false;
   }
@@ -32,11 +37,9 @@ function putContact(id, contact, userId) {
   return true;
 }
 
-function deleteContact(contact, userId) {
+function deleteContact(id) {
   let contacts = getContacts();
-  let index = contacts.findIndex(
-    (c) => c.contact === contact && c.user === userId
-  );
+  let index = contacts.findIndex((c) => c.id === id);
   if (index == -1) {
     return false;
   }
