@@ -1,8 +1,8 @@
 // this page will handle the logic of the home page in our application
 import { renderContactFormPage } from "./contactForm.js";
 
-import { renderPage } from "../utils/navigation.js";
 import Fajax from "../utils/fajax.js";
+import { renderPage } from "../utils/navigation.js";
 
 function getInitials(name) {
   const words = name.split(" ");
@@ -51,6 +51,8 @@ function handleEditClick(contact) {
   renderPage("#contact-form-page");
 }
 
+let index = 0;
+
 const colorList = ["purple", "blue", "green", "yellow", "orange", "red"];
 
 function createListItem(contactList, object) {
@@ -58,8 +60,7 @@ function createListItem(contactList, object) {
   const listItem = document.createElement("li");
   listItem.classList.add("contact");
 
-  let randomIndex = Math.floor(Math.random() * colorList.length);
-  let randomElement = colorList[randomIndex];
+  let randomElement = colorList[(index++) % colorList.length];
 
   const contactAvatar = document.createElement("div");
   contactAvatar.classList.add("contact-avatar", randomElement + "-avatar");
@@ -129,6 +130,9 @@ function createListItem(contactList, object) {
 export function renderHomePage() {
   const contactList = document.getElementById("contact-list");
   contactList.innerHTML = "";
+
+  // picking random number for index
+  index = Math.floor(Math.random() * colorList.length);
 
   // client-side code
   let contacts = [];
