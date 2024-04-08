@@ -1,27 +1,36 @@
+// this will simulate routes for the contact routes for the Rest API
 import database from "../databases/database.js";
 
-// const database = window.database;
-
-function getAllContacts() {
+function getContacts() {
   if (!database.currentUser.getCurrentUser()) {
-    return { status: "error", message: "Unauthorized", data: null };
+    return JSON.stringify({
+      status: "error",
+      message: "Unauthorized",
+      data: null,
+    });
   }
 
-  return {
+  const contacts = database.contacts
+    .getContacts()
+    .filter((c) => c.user === database.currentUser.getCurrentUser().name)
+    .map((c) => {
+      return { id: c.id, contact: c.contact };
+    });
+
+  return JSON.stringify({
     status: "success",
     message: "Successfully retrieved contacts",
-    data: database.contacts
-      .getContacts()
-      .filter((c) => c.user === database.currentUser.getCurrentUser().name)
-      .map((c) => {
-        return { id: c.id, contact: c.contact };
-      }),
-  };
+    data: JSON.stringify(contacts),
+  });
 }
 
 function getContactByName(name) {
   if (!database.currentUser.getCurrentUser()) {
-    return { status: "error", message: "Unauthorized", data: null };
+    return JSON.stringify({
+      status: "error",
+      message: "Unauthorized",
+      data: null,
+    });
   }
 
   const contact = database.contacts
@@ -31,16 +40,20 @@ function getContactByName(name) {
         c.user === database.currentUser.getCurrentUser().name && c.name === name
     );
 
-  return {
+  return JSON.stringify({
     status: "success",
     message: "Successfully retrieved contact by name",
-    data: contact,
-  };
+    data: JSON.stringify(contact),
+  });
 }
 
-function addContact(contact) {
+function postContact(contact) {
   if (!database.currentUser.getCurrentUser()) {
-    return { status: "error", message: "Unauthorized", data: null };
+    return JSON.stringify({
+      status: "error",
+      message: "Unauthorized",
+      data: null,
+    });
   }
   contact = JSON.parse(contact);
   // Generate a unique ID for the new contact
@@ -49,66 +62,60 @@ function addContact(contact) {
     database.currentUser.getCurrentUser().name
   );
   if (!res) {
-    return {
+    return JSON.stringify({
       status: "error",
       message: "Failed to add contact",
       data: null,
-    };
+    });
   }
 
-  return {
+  return JSON.stringify({
     status: "success",
     message: "Successfully added contact",
-    data: contact,
-  };
+    data: JSON.stringify(contact),
+  });
 }
 
-function updateContact(id, updatedContact) {
+function putContact(id, updatedContact) {
   const res = database.contacts.putContact(
     id,
     JSON.parse(updatedContact),
     database.currentUser.getCurrentUser().name
   );
   if (!res) {
-    return {
+    return JSON.stringify({
       status: "error",
       message: "Failed to update contact",
       data: null,
-    };
+    });
   }
-  return {
+  return JSON.stringify({
     status: "success",
     message: "Successfully updated contact",
-    data: updatedContact,
-  };
+    data: JSON.stringify(updatedContact),
+  });
 }
 
 function deleteContact(id) {
   const res = database.contacts.deleteContact(id);
   if (!res) {
-    return {
+    return JSON.stringify({
       status: "error",
       message: "Failed to delete contact",
-    };
+    });
   }
-  return {
+  return JSON.stringify({
     status: "success",
     message: "Successfully deleted contact",
-  };
+  });
 }
-
-// window.getAllContacts = getAllContacts;
-// window.getContactByName = getContactByName;
-// window.addContact = addContact;
-// window.updateContact = updateContact;
-// window.deleteContact = deleteContact;
 
 // console.log("contactsRoutes.js loaded!");
 
 export {
-  addContact,
   deleteContact,
-  getAllContacts,
   getContactByName,
-  updateContact,
+  getContacts,
+  postContact,
+  putContact,
 };

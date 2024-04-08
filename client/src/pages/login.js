@@ -30,9 +30,9 @@ export function renderLoginPage() {
     request.onload = () => {
       if (request.status === 200) {
         flag = true;
-        console.log("Success:", request.status, request.message);
+        // console.log("Success:", request.status, request.message);
       } else {
-        console.error("Error:", request.status, request.message);
+        // console.error("Error:", request.status, request.message);
         // handle the error according the the problem
       }
     };
@@ -67,4 +67,4 @@ export function renderLoginPage() {
   }
 }
 
-console.log("login.js loaded!");
+// console.log("login.js loaded!");

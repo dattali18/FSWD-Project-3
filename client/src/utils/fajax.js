@@ -21,8 +21,6 @@ class Fajax {
   send(data) {
     this.data = data;
     // Simulate server request
-    // const server = window.server;
-    // const server = server;
     const { pathname } = new URL(this.url, "http://mycontacts.com");
     const [, resource, action] = pathname.split("/");
     let response = null;
@@ -32,10 +30,10 @@ class Fajax {
         switch (action) {
           case "":
             if (this.method === "GET") {
-              response = server.getAllContacts();
+              response = JSON.parse(server.getContacts());
               this.status = 200;
             } else if (this.method === "POST") {
-              response = server.addContact(this.data);
+              response = JSON.parse(server.addContact(this.data));
               this.status = 201;
             }
 
@@ -54,12 +52,12 @@ class Fajax {
             let id = Number(action) ? Number(action) : 1;
             // action is not null
             if (this.method === "GET") {
-              response = server.getContactByName(id);
+              response = JSON.parse(server.getContactByName(id));
             } else if (this.method === "PUT") {
-              console.log(this.data);
-              response = server.updateContact(id, this.data);
+              // console.log(this.data);
+              response = JSON.parse(server.putContact(id, this.data));
             } else if (this.method === "DELETE") {
-              response = server.deleteContact(id);
+              response = JSON.parse(server.deleteContact(id));
             }
 
             // parse the response
@@ -79,7 +77,7 @@ class Fajax {
         switch (action) {
           case "":
             if (this.method === "POST") {
-              response = server.registerUser(this.data);
+              response = JSON.parse(server.postUser(this.data));
             }
 
             // parse the response
@@ -100,13 +98,13 @@ class Fajax {
         break;
       case "auth":
         if (this.method === "GET") {
-          response = server.getCurrentUser();
+          response = JSON.parse(server.getCurrentUser());
         }
         if (this.method == "POST") {
-          response = server.authenticateUser(this.data);
+          response = JSON.parse(server.postCurrentUser(this.data));
         }
         if (this.method == "DELETE") {
-          response = server.logoutUser();
+          response = JSON.parse(server.deleteContact());
         }
 
         // parse the response
@@ -130,8 +128,6 @@ class Fajax {
   }
 }
 
-// window.Fajax = Fajax;
-
-console.log("fajax.js loaded!");
+// console.log("fajax.js loaded!");
 
 export default Fajax;

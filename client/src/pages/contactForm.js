@@ -11,9 +11,7 @@ const form = document.getElementById("contact-form");
 form.addEventListener("submit", async (event) => submitForm(event));
 
 export function renderContactFormPage(contactInfo = null) {
-  console.log("Rendering contact form page");
   // removing all the old event listeners
-  // form.replaceWith(form.cloneNode(true));
 
   // put the contact info in the form
   if (contactInfo) {
@@ -45,15 +43,14 @@ submitForm = (event) => {
   request.open("POST", "/contacts/");
   if (object) {
     const url = "/contacts/" + object.id;
-    console.log(url);
     request.open("PUT", url);
   }
   request.onload = () => {
     if (request.status === 201 || request.status === 200) {
       flag = true;
-      console.log("Success:", request.response);
+      // console.log("Success:", request.response);
     } else {
-      console.error("Error:", request.message);
+      // console.error("Error:", request.message);
     }
   };
   request.send(JSON.stringify(contact));
@@ -64,4 +61,4 @@ submitForm = (event) => {
     renderPage("#home");
   }
 };
-console.log("contactForm.js loaded!");
+// console.log("contactForm.js loaded!");

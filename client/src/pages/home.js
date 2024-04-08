@@ -21,19 +21,15 @@ function getInitials(name) {
 }
 
 function handleTrashClick(id) {
-  console.log("Trash clicked!");
-
   // client-side code
-  // TODO: send a DELETE request to the server
   const url = "/contacts/" + id;
-  console.log(url);
   const request = new Fajax();
   request.open("DELETE", url);
   request.onload = () => {
     if (request.status === 200) {
-      console.log("Success:", request.message);
+      // console.log("Success:", request.message);
     } else {
-      console.error("Error:", request.message);
+      // console.error("Error:", request.message);
     }
   };
   request.send();
@@ -44,8 +40,6 @@ function handleTrashClick(id) {
 }
 
 function handleEditClick(contact) {
-  console.log("Edit clicked!");
-
   // opening the contact form page
   renderContactFormPage(contact);
   renderPage("#contact-form-page");
@@ -60,7 +54,7 @@ function createListItem(contactList, object) {
   const listItem = document.createElement("li");
   listItem.classList.add("contact");
 
-  let randomElement = colorList[(index++) % colorList.length];
+  let randomElement = colorList[index++ % colorList.length];
 
   const contactAvatar = document.createElement("div");
   contactAvatar.classList.add("contact-avatar", randomElement + "-avatar");
@@ -141,10 +135,10 @@ export function renderHomePage() {
   request.open("GET", "/contacts/");
   request.onload = () => {
     if (request.status === 200) {
-      contacts = request.response;
-      console.log("Success:", request.response);
+      contacts = JSON.parse(request.response);
+      // console.log("Success:", request.response);
     } else {
-      console.error("Error:", request.response);
+      // console.error("Error:", request.response);
     }
   };
   request.send();
@@ -155,4 +149,4 @@ export function renderHomePage() {
   });
 }
 
-console.log("home.js loaded!");
+// console.log("home.js loaded!");

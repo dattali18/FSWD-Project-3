@@ -43,14 +43,13 @@ export function renderSignUpPage() {
 
     // Convert the form data object to JSON
     // Send the form data to the server for authentication
-    // const request = new window.Fajax();
     const request = new Fajax();
     request.open("POST", "/users/");
     request.onload = () => {
       if (request.status === 200) {
-        console.log("Success:", request.status, request.message);
+        // console.log("Success:", request.status, request.message);
       } else {
-        console.error("Error:", request.status, request.message);
+        // console.error("Error:", request.status, request.message);
       }
     };
     request.send(JSON.stringify(formData));
@@ -69,4 +68,4 @@ export function renderSignUpPage() {
   });
 }
 
-console.log("signup.js loaded!");
+// console.log("signup.js loaded!");

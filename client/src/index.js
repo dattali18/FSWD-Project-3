@@ -6,7 +6,7 @@ import { renderLoginPage } from "./pages/login.js";
 import { renderSignUpPage } from "./pages/signup.js";
 import { activateLink, renderPage } from "./utils/navigation.js";
 
-console.log("index.js loaded!");
+// console.log("index.js loaded!");
 
 const plusButton = document.getElementById("plus-button");
 
@@ -67,9 +67,9 @@ homeLink.addEventListener("click", () => {
   request.onload = () => {
     if (request.status === 200) {
       userAuth = true;
-      console.log("Success:", request.status, request.message);
+      // console.log("Success:", request.status, request.message);
     } else {
-      console.error("Error:", request.status, request.message);
+      // console.error("Error:", request.status, request.message);
     }
   };
   request.send();
@@ -88,9 +88,9 @@ logoutLink.addEventListener("click", () => {
   request.open("DELETE", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
-      console.log("Success:", request.data);
+      // console.log("Success:", request.data);
     } else {
-      console.error("Error:", request.response);
+      // console.error("Error:", request.response);
     }
   };
   request.send();
@@ -130,9 +130,9 @@ request.open("GET", "/auth/");
 request.onload = () => {
   if (request.status === 200) {
     userAuth = true;
-    console.log("Success:", request.status, request.message);
+    // console.log("Success:", request.status, request.message);
   } else {
-    console.error("Error:", request.status, request.message);
+    // console.error("Error:", request.status, request.message);
   }
 };
 request.send();

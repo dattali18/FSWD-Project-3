@@ -1,70 +1,76 @@
+// this will simulate routes for the users routes for the Rest API
 import database from "../databases/database.js";
 
-// const database = window.database;
-
-// this will simulate routes for the users Rest API
-
-function registerUser(data) {
+function postUser(data) {
   // Check if user already exists
   let user = JSON.parse(data);
 
   const existingUser = database.users.getUser(user.name);
 
   if (existingUser) {
-    return { status: "error", message: "User already exists" };
+    return JSON.stringify({ status: "error", message: "User already exists" });
   }
 
   // Add new user to the database
   database.users.postUser(user);
-  return { status: "success", message: "User registered successfully" };
+  return JSON.stringify({
+    status: "success",
+    message: "User registered successfully",
+  });
 }
 
-function authenticateUser(data) {
+function postCurrentUser(data) {
   // Check if user exists
   data = JSON.parse(data);
   const user = database.users.getUser(data.name);
 
   if (!user) {
-    return { status: "error", message: "Invalid email or password" };
+    return JSON.stringify({
+      status: "error",
+      message: "Invalid email or password",
+    });
   }
 
   if (user.email !== data.email || user.password !== data.password) {
-    return { status: "error", message: "Invalid email or password" };
+    return JSON.stringify({
+      status: "error",
+      message: "Invalid email or password",
+    });
   }
 
   // Set current user
   database.currentUser.postCurrentUser(user);
 
-  return { status: "success", message: "Successfully auth user", data: user };
+  return JSON.stringify({
+    status: "success",
+    message: "Successfully auth user",
+    data: user,
+  });
 }
 
 function getCurrentUser() {
   const user = database.currentUser.getCurrentUser();
 
   if (!user) {
-    return {
+    return JSON.stringify({
       status: "error",
       message: "No user is currently logged in",
       data: null,
-    };
+    });
   }
-  return {
+  return JSON.stringify({
     status: "success",
     message: "Successfully fetched current user",
-    data: user,
-  };
+    data: JSON.stringify(user),
+  });
 }
 
-function logoutUser() {
+function deleteCurrentUser() {
   database.currentUser.logoutUser(null);
-  return { status: "success", message: "Successfully logged out" };
+  return JSON.stringify({
+    status: "success",
+    message: "Successfully logged out",
+  });
 }
 
-// console.log("usersRoutes.js loaded!");
-
-// window.registerUser = registerUser;
-// window.authenticateUser = authenticateUser;
-// window.logoutUser = logoutUser;
-// window.getCurrentUser = getCurrentUser;
-
-export { authenticateUser, getCurrentUser, logoutUser, registerUser };
+export { deleteCurrentUser, getCurrentUser, postCurrentUser, postUser };
