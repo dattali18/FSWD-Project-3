@@ -66,7 +66,7 @@ function getCurrentUser() {
 }
 
 function deleteCurrentUser() {
-  database.currentUser.logoutUser(null);
+  database.currentUser.logoutUser();
   return JSON.stringify({
     status: "success",
     message: "Successfully logged out",

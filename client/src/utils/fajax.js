@@ -67,8 +67,8 @@ class Fajax {
               this.response = null;
             } else {
               this.status = 200;
-              this.response = response.data;
               this.message = response.message;
+              this.response = response.data;
             }
             break;
         }
@@ -104,7 +104,7 @@ class Fajax {
           response = JSON.parse(server.postCurrentUser(this.data));
         }
         if (this.method == "DELETE") {
-          response = JSON.parse(server.deleteContact());
+          response = JSON.parse(server.deleteCurrentUser());
         }
 
         // parse the response

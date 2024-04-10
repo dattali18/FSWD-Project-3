@@ -48,30 +48,6 @@
   background-color: var(--grey);
 } */
 
-.blue-avatar {
-  --color-pm: #0081fb;
-  --color-sc: #0082fbd8;
-}
-.red-avatar {
-  --color-pm: #ff3b30;
-  --color-sc: #ff3b30d8;
-}
-.green-avatar {
-  --color-pm: #3bc561;
-  --color-sc: #3bc561d8;
-}
-.yellow-avatar {
-  --color-pm: #ffc92b;
-  --color-sc: #ffc92bd8;
-}
-.orange-avatar {
-  --color-pm: #ff931c;
-  --color-sc: #ff931cd8;
-}
-.purple-avatar {
-  --color-pm: #ac5ada;
-  --color-sc: #ac5adad8;
-}
 
 .contact-avatar {
   display: flex;

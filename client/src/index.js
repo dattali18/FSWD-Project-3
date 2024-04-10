@@ -4,6 +4,7 @@ import { renderContactFormPage } from "./pages/contactForm.js";
 import { renderHomePage } from "./pages/home.js";
 import { renderLoginPage } from "./pages/login.js";
 import { renderSignUpPage } from "./pages/signup.js";
+import { showBanner } from "./utils/banner.js";
 import { activateLink, renderPage } from "./utils/navigation.js";
 
 // console.log("index.js loaded!");
@@ -83,35 +84,44 @@ homeLink.addEventListener("click", () => {
 
 logoutLink.addEventListener("click", () => {
   // client-side code
-  // const request = new window.Fajax();
+  let flag = false;
   const request = new Fajax();
   request.open("DELETE", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
-      // console.log("Success:", request.data);
+      flag = true;
+      console.log("Success:", request.message);
     } else {
-      // console.error("Error:", request.response);
+      console.error("Error:", request.message);
     }
   };
   request.send();
 
-  // display the login page
-  const home = document.getElementById("home");
-  const login = document.getElementById("login");
-  const signup = document.getElementById("signup");
-  home.style.display = "none";
-  signup.style.display = "none";
-  login.style.display = "block";
+  if (flag) {
+    // display the login page
+    const home = document.getElementById("home");
+    const login = document.getElementById("login");
+    const signup = document.getElementById("signup");
+    home.style.display = "none";
+    signup.style.display = "none";
+    login.style.display = "block";
 
-  // display the login link
-  const homeLink = document.getElementById("homeLink");
-  const loginLink = document.getElementById("loginLink");
-  const logoutLink = document.getElementById("logoutLink");
-  homeLink.classList.remove("active");
-  loginLink.classList.add("active");
+    // display the login link
+    const homeLink = document.getElementById("homeLink");
+    const loginLink = document.getElementById("loginLink");
+    // const logoutLink = document.getElementById("logoutLink");
+    homeLink.classList.remove("active");
+    loginLink.classList.add("active");
 
-  // hide the logout link
-  displayLoginLink();
+    // hide the logout link
+    displayLoginLink();
+
+    // show the success message
+    showBanner("Logout successful", "green", "success");
+  } else {
+    // show the error message
+    showBanner("Logout failed", "red", "error");
+  }
 });
 
 document.getElementById("signup-link").addEventListener("click", () => {
@@ -125,11 +135,13 @@ document.getElementById("login-link").addEventListener("click", () => {
 // check if the user is authenticated
 // if the user is authenticated, redirect to the home page
 let userAuth = false;
+let user = {};
 const request = new Fajax();
 request.open("GET", "/auth/");
 request.onload = () => {
   if (request.status === 200) {
     userAuth = true;
+    user = JSON.parse(request.response);
     // console.log("Success:", request.status, request.message);
   } else {
     // console.error("Error:", request.status, request.message);
@@ -140,6 +152,9 @@ request.send();
 if (userAuth) {
   displayLogoutLink();
   navigateTo("#home");
+
+  // display welcome banner
+  showBanner(`Welcome ${user.name}!`, "green", "success");
 } else {
   displayLoginLink();
   navigateTo("#login");

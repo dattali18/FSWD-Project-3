@@ -1,5 +1,6 @@
 import Fajax from "../utils/fajax.js";
 import { renderHomePage } from "./home.js";
+import { showBanner } from "../utils/banner.js";
 
 export function renderLoginPage() {
   // this file will handle the logic of the login page in our application
@@ -41,6 +42,12 @@ export function renderLoginPage() {
     // navigate to home page
     if (flag) {
       navigateToHome();
+
+      // show a success message
+      showBanner("Login successful", "green", "success");
+    } else {
+      // show an error message
+      showBanner("Login failed", "red", "error");
     }
   });
 

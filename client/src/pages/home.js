@@ -2,7 +2,9 @@
 import { renderContactFormPage } from "./contactForm.js";
 
 import Fajax from "../utils/fajax.js";
+
 import { renderPage } from "../utils/navigation.js";
+import { showBanner } from "../utils/banner.js";
 
 function getInitials(name) {
   const words = name.split(" ");
@@ -22,11 +24,13 @@ function getInitials(name) {
 
 function handleTrashClick(id) {
   // client-side code
+  let flag = false;
   const url = "/contacts/" + id;
   const request = new Fajax();
   request.open("DELETE", url);
   request.onload = () => {
     if (request.status === 200) {
+      flag = true;
       // console.log("Success:", request.message);
     } else {
       // console.error("Error:", request.message);
@@ -34,9 +38,17 @@ function handleTrashClick(id) {
   };
   request.send();
 
-  // render the home page
-  renderHomePage();
-  renderPage("#home");
+  if (flag) {
+    // render the home page
+    renderHomePage();
+    renderPage("#home");
+
+    // show a success message
+    showBanner("Contact deleted successfully", "green", "success");
+  } else {
+    // show an error message
+    showBanner("Contact deletion failed", "red", "error");
+  }
 }
 
 function handleEditClick(contact) {

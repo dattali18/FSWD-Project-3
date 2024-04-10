@@ -10,6 +10,7 @@ import {
   getCurrentUser,
   postCurrentUser,
   postUser,
+  deleteCurrentUser,
 } from "./src/routes/usersRouts.js";
 
 // this will simulate an http server in js
@@ -24,7 +25,7 @@ const server = {
   // User management
   postCurrentUser,
   postUser,
-  deleteContact,
+  deleteCurrentUser,
   getCurrentUser,
 };
 

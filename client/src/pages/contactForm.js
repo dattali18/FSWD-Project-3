@@ -3,6 +3,7 @@ import Fajax from "../utils/fajax.js";
 
 import { renderPage } from "../utils/navigation.js";
 import { renderHomePage } from "./home.js";
+import { showBanner } from "../utils/banner.js";
 
 let submitForm;
 let object = null;
@@ -59,6 +60,12 @@ submitForm = (event) => {
   if (flag) {
     renderHomePage();
     renderPage("#home");
+
+    // show success banner
+    showBanner("Contact saved successfully!", "green", "success");
+  } else {
+    // show error banner
+    showBanner("Error saving contact!", "red", "error");
   }
 };
 // console.log("contactForm.js loaded!");

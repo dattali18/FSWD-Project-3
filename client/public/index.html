@@ -34,6 +34,14 @@
           </ul>
         </div>
       </nav>
+      <div id="info-banner" class="info-banner red" style="display: none">
+        <!-- a banner to show some info to the user, for example "Error this username already exists in our app" -->
+        <!-- icon -->
+        <i id="info-banner-icon" class="fa-solid fa-info-circle"></i>
+        <p id="info-banner-text" class="info-banner-text">
+          Error, while login in the application
+        </p>
+      </div>
     </header>
     <main>
       <!-- Login Page -->
@@ -46,7 +54,6 @@
               type="text"
               id="name"
               name="name"
-              value="Daniel"
               placeholder="Enter your name"
               required
             />
@@ -57,7 +64,6 @@
               type="email"
               id="email"
               name="email"
-              value="daniel@gmail.com"
               placeholder="Enter your email"
               required
             />
@@ -68,7 +74,6 @@
               type="password"
               id="password"
               name="password"
-              value="1234"
               placeholder="Enter your password"
               required
             />
