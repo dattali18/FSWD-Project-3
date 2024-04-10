@@ -33,7 +33,7 @@ class Fajax {
               response = JSON.parse(server.getContacts());
               this.status = 200;
             } else if (this.method === "POST") {
-              response = JSON.parse(server.addContact(this.data));
+              response = JSON.parse(server.postContact(this.data));
               this.status = 201;
             }
 

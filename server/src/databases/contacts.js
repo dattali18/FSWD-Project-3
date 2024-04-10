@@ -27,7 +27,7 @@ function putContact(id, contact, userId) {
 
   let contacts = getContacts();
   let index = contacts.findIndex((c) => c.id == id);
-  console.log(index);
+  // console.log(index);
   if (index == -1) {
     return false;
   }

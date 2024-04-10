@@ -1,9 +1,9 @@
 // this file will be used to handle a contact form submit
 import Fajax from "../utils/fajax.js";
 
+import { showBanner } from "../utils/banner.js";
 import { renderPage } from "../utils/navigation.js";
 import { renderHomePage } from "./home.js";
-import { showBanner } from "../utils/banner.js";
 
 let submitForm;
 let object = null;
@@ -35,10 +35,6 @@ submitForm = (event) => {
     email: formData.get("contact-email"),
   };
 
-  form.elements["contact-name"].value = "";
-  form.elements["contact-phone"].value = "";
-  form.elements["contact-email"].value = "";
-
   let flag = false;
   const request = new Fajax();
   request.open("POST", "/contacts/");
@@ -50,22 +46,22 @@ submitForm = (event) => {
     if (request.status === 201 || request.status === 200) {
       flag = true;
       // console.log("Success:", request.response);
+      showBanner("Contact saved successfully!", "green", "success");
     } else {
       // console.error("Error:", request.message);
+      showBanner("Error saving contact!", "red", "error");
     }
   };
   request.send(JSON.stringify(contact));
 
   // navigate back to the home page
   if (flag) {
+    form.elements["contact-name"].value = "";
+    form.elements["contact-phone"].value = "";
+    form.elements["contact-email"].value = "";
+
     renderHomePage();
     renderPage("#home");
-
-    // show success banner
-    showBanner("Contact saved successfully!", "green", "success");
-  } else {
-    // show error banner
-    showBanner("Error saving contact!", "red", "error");
   }
 };
 // console.log("contactForm.js loaded!");

@@ -32,8 +32,10 @@ function handleTrashClick(id) {
     if (request.status === 200) {
       flag = true;
       // console.log("Success:", request.message);
+      // showBanner("Contact deleted successfully", "green", "success");
     } else {
       // console.error("Error:", request.message);
+      showBanner("Contact deletion failed", "red", "error");
     }
   };
   request.send();
@@ -149,8 +151,10 @@ export function renderHomePage() {
     if (request.status === 200) {
       contacts = JSON.parse(request.response);
       // console.log("Success:", request.response);
+      // showBanner("Contacts loaded successfully", "green", "success");
     } else {
       // console.error("Error:", request.response);
+      showBanner("Contacts loading failed", "red", "error");
     }
   };
   request.send();

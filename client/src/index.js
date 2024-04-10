@@ -69,8 +69,10 @@ homeLink.addEventListener("click", () => {
     if (request.status === 200) {
       userAuth = true;
       // console.log("Success:", request.status, request.message);
+      showBanner(`Welcome ${user.name}!`, "green", "success");
     } else {
       // console.error("Error:", request.status, request.message);
+      showBanner("Please login to continue", "yellow", "warning");
     }
   };
   request.send();
@@ -90,9 +92,11 @@ logoutLink.addEventListener("click", () => {
   request.onload = () => {
     if (request.status === 200) {
       flag = true;
-      console.log("Success:", request.message);
+      // console.log("Success:", request.message);
+      showBanner("Logout successful", "green", "success");
     } else {
-      console.error("Error:", request.message);
+      // console.error("Error:", request.message);
+      showBanner("Logout failed", "red", "error");
     }
   };
   request.send();
@@ -143,8 +147,10 @@ request.onload = () => {
     userAuth = true;
     user = JSON.parse(request.response);
     // console.log("Success:", request.status, request.message);
+    showBanner(`Welcome ${user.name}!`, "green", "success");
   } else {
     // console.error("Error:", request.status, request.message);
+    showBanner("Please login to continue", "yellow", "warning");
   }
 };
 request.send();
