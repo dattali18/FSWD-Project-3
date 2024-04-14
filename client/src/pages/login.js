@@ -2,11 +2,15 @@ import { showBanner } from "../utils/banner.js";
 import Fajax from "../utils/fajax.js";
 import { renderHomePage } from "./home.js";
 
+let submitForm; // this will be the function called when the form is submitted
+
+const form = document.getElementById("login-form");
+form.addEventListener("submit", (event) => submitForm(event));
+
 export function renderLoginPage() {
   // this file will handle the logic of the login page in our application
-  const form = document.getElementById("login-form");
   // add event listener to the form submit event
-  form.addEventListener("submit", (event) => {
+  submitForm = (event) => {
     event.preventDefault(); // prevent default form submission behavior
 
     const formData = new FormData(form);
@@ -43,7 +47,7 @@ export function renderLoginPage() {
 
       navigateToHome();
     }
-  });
+  };
 }
 
 function navigateToHome() {

@@ -63,11 +63,13 @@ homeLink.addEventListener("click", () => {
   let userAuth = false;
 
   // const request = new window.Fajax();
+  let user = {};
   const request = new Fajax();
   request.open("GET", "/auth/");
   request.onload = () => {
     if (request.status === 200) {
       userAuth = true;
+      user = JSON.parse(request.response);
       // console.log("Success:", request.status, request.message);
       showBanner(`Welcome ${user.name}!`, "green", "success");
     } else {
@@ -140,6 +142,7 @@ document.getElementById("login-link").addEventListener("click", () => {
 // if the user is authenticated, redirect to the home page
 let userAuth = false;
 let user = {};
+
 const request = new Fajax();
 request.open("GET", "/auth/");
 request.onload = () => {

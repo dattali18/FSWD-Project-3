@@ -23,6 +23,11 @@ function getInitials(name) {
 }
 
 function handleTrashClick(id) {
+  // check with the user if they are sure they want to delete the contact
+  const confirmDelete = confirm("Are you sure you want to delete this contact?");
+  if (!confirmDelete) {
+    return;
+  }
   // client-side code
   let flag = false;
   const url = "/contacts/" + id;

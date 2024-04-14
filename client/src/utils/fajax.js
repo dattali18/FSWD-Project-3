@@ -39,7 +39,7 @@ class Fajax {
 
             // parse the response
             if (response.status == "error") {
-              this.status = 401;
+              this.status = 404;
               this.message = response.message;
               this.response = null;
             } else {
@@ -62,7 +62,7 @@ class Fajax {
 
             // parse the response
             if (response.status === "error") {
-              this.status = 401;
+              this.status = 404;
               this.message = response.message;
               this.response = null;
             } else {
@@ -82,7 +82,7 @@ class Fajax {
 
             // parse the response
             if (response.status === "error") {
-              this.status = 401;
+              this.status = 404;
               this.message = response.message;
               // this.response = null;
             } else {
@@ -109,7 +109,7 @@ class Fajax {
 
         // parse the response
         if (response.status === "error") {
-          this.status = 401;
+          this.status = 404;
           this.message = response.message;
           this.response = null;
         } else {

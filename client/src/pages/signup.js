@@ -3,12 +3,14 @@ import Fajax from "../utils/fajax.js";
 import { activateLink, renderPage } from "../utils/navigation.js";
 // this is the page we handle the submit for the sign up form
 // Get a reference to the sign-in form element
+let submitForm; // this will be the function called when the form is submitted
+
+const signUpForm = document.getElementById("signup-form");
+signUpForm.addEventListener("submit", (event) => submitForm(event));
 
 export function renderSignUpPage() {
-  const signUpForm = document.getElementById("signup-form");
-
   // Add an event listener to the form's submit event
-  signUpForm.addEventListener("submit", (event) => {
+  submitForm = (event) => {
     event.preventDefault(); // Prevent the form from submitting
 
     const formData = new FormData(form);
@@ -62,7 +64,7 @@ export function renderSignUpPage() {
       // activate login link
       activateLink("#login");
     }
-  });
+  };
 }
 
 // console.log("signup.js loaded!");

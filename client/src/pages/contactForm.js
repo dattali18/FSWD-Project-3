@@ -12,6 +12,9 @@ const form = document.getElementById("contact-form");
 form.addEventListener("submit", async (event) => submitForm(event));
 
 export function renderContactFormPage(contactInfo = null) {
+  form.elements["contact-name"].value = "";
+  form.elements["contact-phone"].value = "";
+  form.elements["contact-email"].value = "";
   // removing all the old event listeners
 
   // put the contact info in the form
