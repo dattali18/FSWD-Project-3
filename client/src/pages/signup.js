@@ -28,6 +28,7 @@ export function renderSignUpPage() {
       return;
     }
 
+    console.log(contact.password, contact.confirmPassword);
     if (contact.password !== contact.confirmPassword) {
       // alert("Passwords do not match");
       showBanner("Passwords do not match", "red", "error");

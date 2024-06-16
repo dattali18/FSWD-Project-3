@@ -16,6 +16,7 @@ export function renderPage(pageId) {
     }
   });
 }
+
 export function activateLink(linkId) {
   for (let link in links) {
     if (link === linkId) {
