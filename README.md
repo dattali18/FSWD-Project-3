@@ -6,6 +6,10 @@ This repository contains the code for the third project in the Full Stack Web De
 
 The goal of this project is to build a web application that showcases the skills and knowledge acquired throughout the course. The application will consist of a backend server implemented in `JavaScript` and a frontend client built as a SPA.
 
+## Author
+
+[Daniel Attali](https://github.com/dattali18)
+
 ## Separation of concern
 
 we have separated the project into two part
